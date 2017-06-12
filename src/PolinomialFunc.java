@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 
 public class PolinomialFunc {
 	private ArrayList<Double> coef;
@@ -33,7 +35,7 @@ public class PolinomialFunc {
 		for(int n = 0; n<coef.size();n++)
 		{
 			evaluation += Math.pow(x,n)*coef.get(n);
-			
+
 		}
 
 		return evaluation;

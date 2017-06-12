@@ -22,7 +22,7 @@ public class MainProyectoN3 {
 		do{
 			opcion=0;
 			try{
-				opcion=Integer.parseInt(JOptionPane.showInputDialog(null, "1. Pagina de Presentación.\n "
+				opcion=Integer.parseInt(JOptionPane.showInputDialog(null, "1. Pagina de Presentaciï¿½n.\n "
 						+ "2. Metodo Cerrado. \n "
 						+ "3. Metodo Abierto.\n"
 						+ "4. Salir del Programa.\n"));
@@ -35,7 +35,7 @@ public class MainProyectoN3 {
 			}
 			switch(opcion)
 			{
-			case 1: PresentationPague();break;
+			case 1: PresentationPage();break;
 			case 2: ClosedMethodMenu();break;
 			case 3: //OpenMethodMenu();break;
 			case 4: System.exit(0);
@@ -45,7 +45,7 @@ public class MainProyectoN3 {
 	}
 	
 	
-	static void PresentationPague(){
+	static void PresentationPage(){
 		ImageIcon presentacion = new ImageIcon(MainProyectoN3.class.getClassLoader().getResource("presentacion.jpg"));
 		JOptionPane.showMessageDialog(null, presentacion);
 	}
@@ -58,7 +58,7 @@ public class MainProyectoN3 {
 		do{
 			opcion=0;
 			try{
-				opcion=Integer.parseInt(JOptionPane.showInputDialog(null, "1. Metodo de Bisección \n"
+				opcion=Integer.parseInt(JOptionPane.showInputDialog(null, "1. Metodo de Bisecciï¿½n \n"
 						+ "2. Regresar al menu principal. \n"));
 			}
 			catch(Exception e)

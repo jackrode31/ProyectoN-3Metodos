@@ -1,8 +1,7 @@
 
 public class Secante {
 	
-	
-	public static Double solve (PolinomialFunc f, double x0, double x1) throws Exception
+	public static Object[] solve (PolinomialFunc f, double x0, double x1) throws Exception
 	{
 		double xn;
 		int n=1,nmax=1000 ;
@@ -24,7 +23,7 @@ public class Secante {
 			}
 		}while(!stop);
 		
-		return xn;
+		return new Object[] {xn,xn};
 	}
 
 }

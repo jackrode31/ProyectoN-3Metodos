@@ -1,3 +1,4 @@
+﻿
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -100,3 +101,4 @@ public class matrixResult extends JFrame {
 		return contentPane;
 	}
 }
+

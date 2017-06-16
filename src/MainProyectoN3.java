@@ -1,5 +1,6 @@
 ﻿import javax.swing.JOptionPane;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class MainProyectoN3 {
 		do{
 			opcion=0;
 			try{
-				opcion=Integer.parseInt(JOptionPane.showInputDialog(null, "1. Pagina de Presentaci�n.\n "
+				opcion=Integer.parseInt(JOptionPane.showInputDialog(null, "1. Pagina de Presentacion.\n "
 						+ "2. Metodo Cerrado. \n "
 						+ "3. Metodo Abierto.\n"
 						+ "4. Salir del Programa.\n"));
@@ -50,7 +51,9 @@ public class MainProyectoN3 {
 
 	static void PaginaDePresentacion(){
 
-		ImageIcon presentacion = new ImageIcon(MainProyectoN3.class.getClassLoader().getResource("presentacion.jpg"));
+		ImageIcon presentacion = new ImageIcon(
+				new ImageIcon(
+						MainProyectoN3.class.getClassLoader().getResource("presentacion.jpg")).getImage().getScaledInstance(556,720, Image.SCALE_DEFAULT));
 		JOptionPane.showMessageDialog(null, presentacion);
 	}
 	

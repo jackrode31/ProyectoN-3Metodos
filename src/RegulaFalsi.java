@@ -1,42 +1,87 @@
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class RegulaFalsi {
 
-	public PolinomialFunc func;
-	double a,b, xr, fa,fxr,fb;
-	static double bEvaluation, aEvaluation, xrEvaluation, z; 
+
 	
-	
-	public double[] Evaluacion(double a, double b)
+	public static Object[] solve(PolinomialFunc f,double a, double b)
 	{
-		this.a=a;
-		this.b=b;
-		double errLast = 0;
-		
-		do
-		{
-			
-			aEvaluation = func.evaluate(a);
-			bEvaluation = func.evaluate(b);
-			xr=(b-(bEvaluation*(a-b))/(aEvaluation-bEvaluation));
-			xrEvaluation=func.evaluate(xr);
-			//errLast=
-					
-			if(xrEvaluation>0){
-				a=xr;	
+		double tolerancia=0.0001;
+		int i= 0;
+		DecimalFormat df = new DecimalFormat("#.####");
+		df.setRoundingMode(RoundingMode.CEILING);
+		ArrayList<String> iOut=new ArrayList<String>();
+		ArrayList<String> aOut=new ArrayList<String>();
+		ArrayList<String> faOut= new ArrayList<String>();
+		ArrayList<String> bOut= new ArrayList<String>();
+		ArrayList<String> fbOut=new ArrayList<String>();
+		ArrayList<String> fafxrOut=new ArrayList<String>();
+		ArrayList<String> xrOut=new ArrayList<String>();
+		ArrayList<String> fxrOut=new ArrayList<String>();
+		ArrayList<String> errOut=new ArrayList<String>();
+		double xr;
+		double xrLast;
+		double error;
+		do{
+			double fa=f.evaluate(a);
+			double fb=f.evaluate(b);
+			xr=b-((fb*(a-b))/(fa-fb));
+			xrLast = xr;
+			error=(Math.abs(xr-xrLast)/Math.abs(xr));
+			double fxr=f.evaluate(xr);
+			iOut.add(""+i++);
+			aOut.add(df.format(a));
+			bOut.add(df.format(b));
+			faOut.add(df.format(fa));
+			fbOut.add(df.format(fb));
+			fafxrOut.add(df.format(fa*fxr));
+			xrOut.add(df.format(xr));
+			fxrOut.add(df.format(fxr));
+			errOut.add(df.format(error));
+			if((fa*fxr)<0)
+			{
+				b=xr;
 			}
 			else
+			{
+				if((fa*fxr)>0)
 				{
-				b=xr;
+					a=xr;
 				}
+				else
+				{
+					return new Object[]{xr,pruebaEscritorio(iOut,aOut,faOut,bOut,fbOut,fafxrOut,xrOut,fxrOut)};
+				}
+			}
+		
 			
-		}while(errLast>0.0001);
-		return new double[]{a, b, aEvaluation, bEvaluation,(aEvaluation*xrEvaluation),xrEvaluation,errLast };
-}
-	
-	
-	public void xr(){
-		xr=b-(fb*(a-b))/(fa-fb);
+		}while((Math.abs(xr-xrLast)/Math.abs(xr))<=tolerancia);
+		return new Object[]{xr,pruebaEscritorio(iOut,aOut,bOut,xrOut,fxrOut,faOut,fbOut,errOut)};
+		
 	}
 	
+	
+	public static String[][] pruebaEscritorio(ArrayList<String>c1,ArrayList<String>c2,ArrayList<String>c3,ArrayList<String>c4,
+			ArrayList<String>c5,ArrayList<String>c6,ArrayList<String>c7,ArrayList<String>c8) 
+	{
+		String[][] out = new String[c1.size()][8];
+		for(int r=0;r<c1.size();r++)
+		{
+				out[r][0]=c1.get(r);
+				out[r][1]=c2.get(r);
+				out[r][2]=c3.get(r);
+				out[r][3]=c4.get(r);
+				out[r][4]=c4.get(r);
+				out[r][5]=c5.get(r);
+				out[r][6]=c6.get(r);
+				out[r][7]=c7.get(r);
+		}
+		return out;
+		
+	}
+	
+
 	
 }

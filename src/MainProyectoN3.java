@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class MainProyectoN3 {
 
-	public static void main(String[] args)throws IOException {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		
@@ -40,10 +40,10 @@ public class MainProyectoN3 {
 
 			case 2: ClosedMethodMenu();break;
 			case 3: OpenMethodMenu();break;
-			case 4: System.exit(0);
+			case 4: System.exit(0);break;
 			default: JOptionPane.showMessageDialog(null, "Opcion invalida.");
 			}
-		}while(opcion!=3);
+		}while(opcion!=4);
 	}
 	
 	
@@ -62,7 +62,7 @@ public class MainProyectoN3 {
 		do{
 			opcion=0;
 			try{
-				opcion=Integer.parseInt(JOptionPane.showInputDialog(null, "1. Metodo de Bisecci�n \n"
+				opcion=Integer.parseInt(JOptionPane.showInputDialog(null, "1. Metodo de RegulaFalsi \n"
 						+ "2. Regresar al menu principal. \n"));
 			}
 			catch(Exception e)
@@ -95,7 +95,7 @@ static void OpenMethodMenu(){
 			}
 			switch(opcion)
 			{
-			case 1: MetodoSecante();
+			case 1: MetodoSecante();break;
 			case 2: continue;
 			
 			}
@@ -172,12 +172,16 @@ static void OpenMethodMenu(){
 			}
 		}while(error==true);	
 		
+		Object[] solution=RegulaFalsi.solve(new PolinomialFunc(funcCoef),a,b);
 		
+		JOptionPane.showMessageDialog(null,"Raiz del Polinomio:"+solution[0]);
+		matrixResult print = new matrixResult((String[][])solution[1],new String[] {"Iter","a","b","f(xn)","f(a)","f(b)","Error Relativo"});
+		print.showme();
 		
 		
 	}
 		
-	static void MetodoSecante()
+	static void MetodoSecante() 
 	{
 		
 		boolean error = false;
@@ -243,5 +247,16 @@ static void OpenMethodMenu(){
 				error=true;
 			}
 		}while(error==true);	
+		try{
+		Object[] solution=Secante.solve(new PolinomialFunc(funcCoef),a,b);
+		
+		JOptionPane.showMessageDialog(null,"Raiz del Polinomio:"+solution[0]);
+		matrixResult print = new matrixResult((String[][])solution[1],new String[] {"n","xn","f(xn)","f(xn+1)","Error Relativo"});
+		print.showme();
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showMessageDialog(null, "Se Alcanzo el maximo de iteraciones");
+		}
 	}
 }
